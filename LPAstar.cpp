@@ -92,7 +92,7 @@ int LpaStar::Search(){
             break;
         }
 
-		adjust_heap( 0 );               // 调整堆
+		sort_heap( 0 );               // 调整堆
     }
     
     if ( is_found )
@@ -167,7 +167,7 @@ void LpaStar::adjust_heap( int /*i*/nIndex )
             child = curr * 2 + 1;           // 再判断左孩子
         }
     }
-    
+    /*
     if (curr != nIndex)
     {
         return;
@@ -187,6 +187,16 @@ void LpaStar::adjust_heap( int /*i*/nIndex )
             curr = parent;
             parent = (curr-1)/2;
         }
+    }
+	*/
+}
+
+void LpaStar::sort_heap( int /*i*/nIndex )
+{
+    int i;
+    for(i = open_node_count - 1;i >= nIndex;i--)//从子树开始整理树
+    {
+        adjust_heap(i);
     }
 }
 
@@ -268,7 +278,7 @@ void LpaStar::insert_to_opentable( int x, int y, LpaStarCell *curr_node, LpaStar
                         }
                     }
                     
-                    adjust_heap(i);                   // 下面调整点
+                    sort_heap(i);                   // 下面调整点
                 }
             }
             else                                    // 不在open中
