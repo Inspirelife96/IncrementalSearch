@@ -16,6 +16,7 @@ public:
 
 private:
     void adjust_heap(int nIndex);
+	void sort_heap( int nIndex);
     void swap(int idx1, int idx2);
     void get_neighbors(LpaStarCell* curr_node, LpaStarCell* end_node);
     void insert_to_opentable(int x, int y, LpaStarCell *curr_node, LpaStarCell *end_node, int w);
